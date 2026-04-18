@@ -1,0 +1,17 @@
+# Virtual Environment
+venv/
+
+# Model weights
+model/
+
+# Video files
+video/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
