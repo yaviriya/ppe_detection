@@ -12,11 +12,7 @@ ppe_obj_detection/
 └── video/                # วิดีโอสำหรับทดสอบ (kyt1-8.mp4, new1-3.mp4 ฯลฯ)
 ```
 
-## การใช้งาน
 
-```python
-detect_objects_video('kyt2.mp4', confidences=0.25, device='cuda')
-```
 
 - `video_name` — ชื่อไฟล์วิดีโอใน `./video/`
 - `confidences` — ค่า confidence threshold (default: 0.5)
