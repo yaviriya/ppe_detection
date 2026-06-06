@@ -8,7 +8,7 @@ def detect_objects_video(video_name, confidences=0.5, device='cuda'):
     cap = cv2.VideoCapture(paths)  # อ่านวิดีโอจากไฟล์ที่ส่งเข้ามา
 
     # Load YOLO model
-    model = YOLO('./model/best_22032026.pt').to(device)  # โหลดโมเดลจากในเครื่อง
+    model = YOLO('./model/best_01062026_1057pm.pt').to(device)  # โหลดโมเดลจากในเครื่อง
     # model.predict(classes=[0, 2])  # กำหนดคลาสที่ต้องการตรวจจับ เช่น [0, 1, 2] สำหรับบุคคลและรถยนต์
 
     # ตรวจสอบว่าการเปิดวิดีโอสำเร็จหรือไม่
@@ -42,6 +42,12 @@ def detect_objects_video(video_name, confidences=0.5, device='cuda'):
                 if clsname == 'NO-Hardhat':
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 2)  # วาดกรอบสี่เหลี่ยมรอบวัตถุที่ตรวจจับได้
                     cv2.putText(frame, f'{label}', (x1, y1-5), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2) # แสดงชื่อวัตถุที่ตรวจจับได้
+                if clsname == 'Fall-Detected':
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (147, 20, 255), 2)  # วาดกรอบสี่เหลี่ยมรอบวัตถุที่ตรวจจับได้
+                    cv2.putText(frame, f'{label}', (x1, y1-5), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (147, 20, 255), 2) # แสดงชื่อวัตถุที่ตรวจจับได้
+                if clsname == 'Safety-Cone':
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 255), 2)  # วาดกรอบสี่เหลี่ยมรอบวัตถุที่ตรวจจับได้
+                    cv2.putText(frame, f'{label}', (x1, y1-5), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 255), 2) # แสดงชื่อวัตถุที่ตรวจจับได้
 
         # แสดง video ที่มีการตรวจจับวัตถุ
         cv2.imshow("Video Frame", frame)
@@ -51,4 +57,4 @@ def detect_objects_video(video_name, confidences=0.5, device='cuda'):
     cv2.destroyAllWindows()
 
 # เรียกใช้งานฟังก์ชันตรวจจับวัตถุ
-detect_objects_video('kyt2.mp4', 0.25)
+detect_objects_video('fail1.mp4', 0.35)
